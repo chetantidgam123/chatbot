@@ -1,0 +1,29 @@
+﻿{
+    "dbName": "chatbot",
+    "dbConfig": {
+        "server": "localhost",
+        "options": {
+            "port": 5432,
+            "trustServerCertificate": true
+        },
+        "authentication": {
+            "type": "default",
+            "options": {
+                "userName": "postgres",
+                "password": "chetan"
+            }
+        },
+        "dialectOptions": {
+           
+            "requestTimeout": 300000
+          
+        },
+        "pool": {
+            "max": 1000,
+            "min": 0,
+            "idle": 1000000
+        }
+    },
+    "secret": "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING",
+    "baseUrl":"/api/v1/uat"
+}

@@ -1,11 +1,11 @@
-import logo from './logo.svg';
+
 import './App.css';
-import ChatbotComponent from './chatbot/ChatBotComponent';
+import RoutesRouter from './routes/Routes';
 
 function App() {
   return (
-    <div className="App">
-     <ChatbotComponent/>
+    <div className="container">
+     <RoutesRouter/>
     </div>
   );
 }

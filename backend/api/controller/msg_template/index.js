@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 const { authorize, authorizeAdmin } = require('../../../_middleware')
-const {addMsgTemplate, templateSchema } = require('./post')
+const {addMsgTemplate, templateSchema, getTemplaltes } = require('./post')
 const { log } = require('winston');
 
 module.exports = (msgTemplateModal, { config }) => {
@@ -33,5 +33,6 @@ module.exports = (msgTemplateModal, { config }) => {
     }
     const upload = multer({ storage: storage, fileFilter: fileFilter, });
     router.post('/add-template', templateSchema, addMsgTemplate(msgTemplateModal, { config }));
+    router.post('/getTemplaltes', getTemplaltes(msgTemplateModal, { config }));
     return router;
 };

@@ -23,15 +23,34 @@ const addMsgTemplate =
             replacements: [_content],
             type: QueryTypes.INSERT,
           });
-          if(rowOut[0].id && rowOut[0].id>0 ){
+          if (rowOut[0].id && rowOut[0].id > 0) {
             return res.json({ status: true, code: 200, message: 'message template added successfully.' })
-          }else{
+          } else {
             return res.json({ status: false, code: 200, message: 'someting went wrong.' })
           }
         } else {
           return res.json({ status: false, code: 200, message: 'message template required' })
         }
       } catch (err) {
+        console.log(err);
+      }
+    };
+const getTemplaltes =
+  ({ userModel }, { config }) =>
+    async (req, res, next) => {
+      try {
+        const selectTemplated = `SELECT content, id FROM msg_templates where is_deleted='false'`;
+        const rowData = await db.sequelize.query(selectTemplated, {
+          replacements: [],
+          type: QueryTypes.SELECT,
+        });
+        if (rowData && rowData.length > 0) {
+          return res.json({ status: true, code: 200, message: '', result: rowData })
+        } else {
+          return res.json({ status: true, code: 200, message: '', result: [] })
+        }
+      }
+      catch (err) {
         console.log(err);
       }
     };
@@ -46,4 +65,5 @@ function templateSchema(req, res, next) {
 module.exports = {
   addMsgTemplate,
   templateSchema,
+  getTemplaltes
 };
